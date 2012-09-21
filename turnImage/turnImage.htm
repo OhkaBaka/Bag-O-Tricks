@@ -7,7 +7,7 @@
 		<style>
 			.f_container {
 				display: block;
-				position: absolute;
+				position: relative;
 			}
 			.f_segment {
 				display: block;
@@ -25,7 +25,7 @@
 				position:absolute;
 				display: block;
 				left: 20px;
-				top: 20px;
+				top: 50px;
 				width: 100px;
 				border: 1px solid black;
 				background-color:#BBDDBB;
@@ -39,31 +39,43 @@
 				margin: 3px auto;
 				width: 90px;
 			}
-			#textBlurb{
-				font: normal 8pt Verdana, Arial, Helvetica, sans-serif;
-				position:absolute;
+			#scrollerDiv{
 				display: block;
-				right: 20px;
-				bottom: 20px;
-				width: 300px;
-				border: 1px solid black;
-				background-color:#BBDDBB;
-				color:#003300;
+				position:absolute;
+				overflow-x: scroll;
+				overflow-y: hidden;
+				width: auto;
+				height: 18px;
 				padding: 0px;
+				left: 5px;
+				right: 5px;
+				bottom: 0px;
 			}
-			#textBlurb p {
-				margin: 10px;
+			#scrollerBody{ display: block; position:relative; width: 480px; height: 16px; margin: 0; padding: 0; }
+			#controlDiv{
+				display: block ;
+				position:relative ;
+				overflow: hidden ;
+				width: 600px ;
+				height: 110px ;
+				bottom: 10px ;
+				border: 1px solid #9999CC ;
+				margin: 0 auto ;
+				padding: 0px ;
 			}
-			#textBlurb h5 {
-				font: bold 6pt Verdana, Arial, Helvetica, sans-serif;
-				margin: 5px 10px 0px 10px; text-align:left;
+			#controlNote{
+				display: block;
+				position:absolute;
+				bottom: 20px;
+				left: 5px;
+				right: 5px;
+				top: 5px;
+				border: 1px solid #9999CC;
+				font: normal 10pt Helvetica, Arial, sans-serif;
+				padding: 3px;
 			}
-			#textBlurb h6 {
-				font: normal 6pt Verdana, Arial, Helvetica, sans-serif;
-				margin: 2px 10px 5px 20px; text-align:left;
-			}
-			
 		</style>
+		
 		<!--- LAZY! For 2 friggin commands... sigh... script type="text/javascript" src="prototype.js" ></script --->
 		<script language="javascript">
 			IMAGE_SEGMENTS = 10;
@@ -82,7 +94,7 @@
 			var eventAdd = function( elm, evt, func ){
 				if( typeof( elm ) == "string" ) tElement = $( elm );
 				else if( typeof( elm ) == "object" ) tElement = elm;
-				
+
 				if ( tElement.addEventListener ) {
 					tElement.addEventListener( evt, func, false);
 				} else if( tElement.attachEvent ){
@@ -91,7 +103,7 @@
 					eval( "tElement.on" + evt + " = func" );
 				}
 			}
-			
+
 
 			window.size = function(){
 				var w = 0;
@@ -141,7 +153,7 @@
 							}
 						}
 					}
-					
+
 					containerWidth = 0;
 					if( this.flipAngle >= -90 && this.flipAngle <= 90 ){
 						 // turnPercentage: percent of flipAngle between 100% [0 degrees] and the minimum perceptual depth percentage at this.minDepth [+-90 degrees]
@@ -171,11 +183,11 @@
 							this.segments.wrappers[ ix ].style[otherDir] = 'auto';
 							this.segments.wrappers[ ix ].style[pivotDir] = ( thisSegWidth * segix ) + 'px';
 							this.segments.wrappers[ ix ].style.top = thisSegTop + 'px';
-	
+
 							this.segments.images[ ix ].style.left = ( thisSegWidth * ix ) * -1  + 'px';
 							this.segments.images[ ix ].style.width = thisImgWidth + 'px';
 							this.segments.images[ ix ].style.height = thisSegHeight + 'px';
-	
+
 						}
 
 						this.container.style.width = thisImgWidth + 'px';
@@ -249,43 +261,44 @@
 					alert( "Yeah, you did that right" );
 				}
 			}
+			function getScrollPos(){
+				if( typeof( scrolledTo ) != "undefined" ) oldScroll = scrolledTo; else {
+					oldScroll = 0;
+					scrollUnmoved = 0;
+				}
+				if( typeof( $( "scrollerDiv" ).scrollLeft ) == "number" ){
+					scrolledTo = $( "scrollerDiv" ).scrollLeft - 90;
+				} else {
+					scrolledTo =  $( "scrollerDiv" ).pageYOffset - 90;
+				}
+
+				if( oldScroll != scrolledTo && !vista.flipTo( scrolledTo ) ) scrolledTo = oldScroll;
+				if( scrolledTo == oldScroll ) scrollUnmoved++; else scrollUnmoved = 0;
+			}
 
 			doLoaded = function(){
 				vista = new panFlip( "flipImage_0" );
+				$("scrollerBody").style.width = ( $("scrollerDiv").offsetWidth + 180 ) + "px";
+				$("scrollerDiv").scrollLeft = 90;
+				setInterval("getScrollPos()", 250);
 			}
+
 			eventAdd( window, "load", doLoaded );
 
 		</script>
 
 	</head>
-	
+   
 	<body>
 		<img src="small_beachview6.jpg" id= "flipImage_0" />
-		<div id="turnButtons" >
-			<input type="button" id="flipTo90" onclick="vista.flipTo(87)" value="Flip To 87°" />
-			<input type="button" id="flipTo75" onclick="vista.flipTo(75)" value="Flip To 75°" />
-			<input type="button" id="flipTo60" onclick="vista.flipTo(60)" value="Flip To 60°" />
-			<input type="button" id="flipTo45" onclick="vista.flipTo(45)" value="Flip To 45°" />
-			<input type="button" id="flipTo30" onclick="vista.flipTo(30)" value="Flip To 30°" />
-			<input type="button" id="flipTo15" onclick="vista.flipTo(15)" value="Flip To 15°" />
-			<input type="button" id="flipTo0" onclick="vista.flipTo(0)" value="Flip To 0° (reset)" />
-			<input type="button" id="flipToN15" onclick="vista.flipTo(-15)" value="Flip To -15°" />
-			<input type="button" id="flipToN30" onclick="vista.flipTo(-30)" value="Flip To -30°" />
-			<input type="button" id="flipToN45" onclick="vista.flipTo(-45)" value="Flip To -45°" />
-			<input type="button" id="flipToN60" onclick="vista.flipTo(-60)" value="Flip To -60°" />
-			<input type="button" id="flipToN75" onclick="vista.flipTo(-75)" value="Flip To -75°" />
-			<input type="button" id="flipToN90" onclick="vista.flipTo(-87)" value="Flip To -87°" />
-		</div>
-		<div id="textBlurb" >
-			<p >
-				<em>Every</em> other website IN THE WORLD would have done that page in Flash.<br />
-				99.5% of all developers IN THE WORLD wouldn't care that it could be done in JS.<br />
-				Oh my God... it has an easter egg, and the dial goes to 11.<br />
-				<!--- If I don't get this job, I may never recover. --->
-			</p>
-			<p>I honestly thought I was alone.</p>
-			<h5>christopher travis trulove</h5>
-			<h6>on facebook about www.WallSt.com/people.asp</h6>
+		<div id="controlDiv">
+			<div id="scrollerDiv" ><div id="scrollerBody">&nbsp;</div></div>
+			<div id="controlNote">
+				A "simple" z-axis image rotation in JS - <span style="color:red;">Adjust the scrollbar to move the image.</span><br />
+				<span style="font-size: 10px;">Due to surprisingly bad IE javascript performance, this is a bit nicer to watch in Firefox, Opera, probably even Lynx (no really, surprisingly bad even for Microsoft)</span><br />
+				<span style="font-size: 10px;">[ Props where they are due... IE9 does it right ]</span>
+				After recently seeing the <a href="http://wallst.com/people.asp">wallst.com &ldquo;people&rdquo;</a> page, I was inspired to find another of my "You can't do that in javascript" challenges (several examples in my catalog were born of such experiences).<br />
+			</div>
 		</div>
 	</body>
 </html>
