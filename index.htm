@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Christopher Travis TruLove's Code Samples</title>
+		<style>
+			body{font: normal 10pt Verdana, Arial, Helvetica, sans-serif;color: #000000;background-color:#DDCCCC;padding: 0px;margin: 0px; overflow-x: hidden; }
+			#bodyDiv{
+				display:block;
+				position:relative;
+				padding: 0px;
+				width: 900px;
+				margin: 10px auto;
+				height:1%;
+			}
+			body > #bodyDiv{ height: auto; }
+	
+			h1 { padding: 0px; margin: 0px; line-height: 200%; font: bold 14pt Verdana, Arial, Helvetica, sans-serif; }
+			h2 { padding: 0px; margin: 0px; line-height: 150%; font: bold 12pt Verdana, Arial, Helvetica, sans-serif; }
+			p { padding: 5px 0px; margin: 0px; }
+			br { padding: 7px 0px; margin: 7px 0px; }
+	
+			code { font: normal 10pt "Courier New", Courier, monospace; display: block; border-left: 10px solid #999; background-color: #CCC; padding: 5px 10px; width: auto; margin: 5px 5%; }
+	
+	
+			div.odd, div.even { padding: 5px; margin: 0px 0px 5px 0px; }
+			div > .odd, div > .even { height: auto; }
+	
+			#bodyDiv div.odd { background-color:#CDC; color: #363; border: 1px solid #BAA; }
+			#bodyDiv div.even { background-color:#CCD; color: #336; border: 1px solid #BAA; padding: 5px; margin: 0px 0px 5px 0px; }
+
+			div.even a, div.odd a { float: left; clear: both; padding: 2px 5px; margin: 2px; background-color:#CCAAAA; color: #663333; border: 1px solid #663333; text-decoration: none;}
+
+			div.even span, div.odd span { float: left; clear: both; padding: 2px 5px; margin: 2px; background-color:#BBBBBB; color: #444444; border: 1px solid #444444; }
+
+			div.even p, div.odd p { float: left; clear: both; padding: 2px 5px; margin: 2px; }
+
+			#introDiv {
+				display:block;
+				position:relative;
+				color: #555533;
+				background-color:#FFFFDD;
+				padding: 10px;
+				margin: 10px;
+			}
+			
+			.blogDiv{
+				background-color:#CCCCBB;
+				color: #004422;
+				border: 1px solid #999955;
+				display:block;
+				position:relative;
+				font: normal 11pt/14pt Verdana, Arial, Helvetica, sans-serif;
+				padding: 5px;
+				margin: 0px 0px 5px 0px;
+			}
+
+			.blogDiv p span {
+				display: block;
+				font-size: 80%;
+				margin: 5px;
+				padding: 5px;
+			}
+
+			.clear{ display: block; position: relative; height: 1%; }
+			.clear:after{ font: normal 1px Verdana; content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+			div > .clear{ height: auto; }
+	
+			.particleList li {list-style-type:none; }
+	
+		</style>
+
+	</head>
+
+	<body>
+		<div id="bodyDiv" >
+			<div id="introDiv">
+				<div class="blogDiv">
+					<p>
+						Hello Wall Street On Demand, welcome to my Code!<br />
+						All of this code is also visible (and functional, in the case of server side code) at:<br />
+						<a href="http://www.introprod.com/wsod/" >http://www.introprod.com/wsod/</a>
+					</p>
+					<hr />
+					<p>
+						Humility.<br/>
+						It was pointed out during my recent interview that using [handgesture] huge [/handgesture] <strong>prototype</strong> for [fingergesture] tiny [/finguregesture] <strong>selectors</strong> seemed inefficient (I think we all agreed the word should have been "mostly stupid", but Neil was more tactful than that).<br />
+						I constantly tell people not to use a huge package for a tiny function that they could (and probably should) write themselves.  Ridiculous.<br />
+						As it turns out, I don't think I use prototype anywhere for JUST the selectors, though "just the selectors and event management" is probably VERY common.<br />
+						You really do have to watch yourself all the time.  Being around other coders at or above your ability is critical.<br />
+						<span>NOTE: 10/18/2009 - I have taken it out of <a href="eatImageHtml.php">eatImage</a>, and fixed the event management to a point where I like it.</span>
+						<span>NOTE: 10/14/2009 - I took it out of my pride project <a href="turnImage.htm">turnImage</a>, and whilst I don't have the event management where I want it exactly, I feel cleaner for having done it.</span>
+					</p>
+				</div>
+				<div class="odd clear">
+					<a href="http://www.introprod.com/wsod/usgs2kml/">USGS State Outlines to Google KML</a>
+					<span>Demonstrates: JS, Coldfusion </span>
+					<p>
+						I was working in the Google Maps system before there was a publicly available API.  I spent a couple of years working on various projects for the system.  It was the first time I accepted using an JavaScript API, rather than coding something myself.<br />
+						At one point I was asked if I would be able to display State, County, and Zip Code boundaries on the Google Map, this work was that simplest answer to that request.<br />
+						<font style="color:#990000;">NOTE: The hyperlink above goes to the Introvert Productions website, due to API licensing restrictions.</font>
+					</p>
+				</div>
+				<div class="even clear">
+					<a href="genghis">GEngHIS (current, without working map)</a>
+					<a href="genghis/index_v02.htm">GEngHIS (older, with working map)</a>
+					<a href="genghis/mapper.cfm">GEngHIS Map Maker</a>
+					<span>Demonstrates: JS</span>
+					<p>
+						Current Version of my 8-bit inspired game engine, the map system is down while it gets upgraded, but the effects systems are demonstrated.<br />
+						Also included are bits and pieces of the under development map generation tool: "mapper.cfm".
+					</p>
+				</div>
+				<div class="odd clear">
+					<a href="lex">Lex's Image Gallery</a>
+					<span>Demonstrates: CSS, JS, XML</span>
+					<p>
+						A collection management system for photos of my son<br />
+						Built to house the growing collection of baby pictures.  This went through several iterations, though I seem to have lost steam when he was about 8 months old.  There are a few things I would like to add to improve it, namely an administration function so I can easily ADD photos too it.
+					</p>
+				</div>
+				<div class="even clear">
+					<a href="eatImageHtml.php">eatImage</a>
+					<span>Demonstrates: PHP, JS, madness</span>
+					<p>
+						A proof of concept page that converts a gif to HTML.<br />
+						<font style="color:#990000;">WARNING! The rendered web page at this link has around <em>ELEVEN THOUSAND</em> html div elements.  While it is tested good in IE and FF, I can't vouch for trying it on a Pentium II with 512M of memory.</font><br />
+					</p>
+				</div>
+				<div class="odd clear">
+					<a href="bella">A Piece of Penasco</a>
+					<span>Demonstrates: CSS, JS</span>
+					<p>
+						I was asked to build a website for a simple web server that FELT more like a robust application.  This web "site" is the result of the effort.  Everything renders dynamically from a single page. Probably my favorite "simple" site from all my experience.  Also I was happy with my colors, and I am almost never happy with my colors.
+					</p>
+				</div>
+				<div class="even clear">
+					<a href="cbf/cbf.swf">Cherry Blossoms Fall</a>
+					<span>Demonstrates: Flash, ActionScript</span>
+					<p>
+						I prefer Javascript to ActionScript, but can <em>do</em> AS, and I've managed to make it do some interesting things.<br/>
+						The uncompiled cbf flash file is included as well.
+					</p>
+				</div>
+				<div class="odd clear">
+					<a href="towers.php">Towers of Hanoi</a>
+					<span>Demonstrates: PHP, problem solving</span>
+					<p>
+						This challenge was presented to me in a recent interview.  I failed to be coder enough to solve this on their whiteboard, but it stuck with me, and I was compelled to solve it.  I drove straight home and did so, without even looking up the name of it first, for fear I would see a code snippet that would make it too easy.
+					</p>
+				</div>
+				<div class="even clear">
+					<a href="phpadv">PHP Adventures</a>
+					<span>Demonstrates: PHP, OOP</span>
+					<p>
+						Text adventure engine using OOP for object construction in PHP.  Doesn't look like much now, but the logic under the hood is pretty cool.
+					</p>
+				</div>
+				<div class="blogdiv clear">&nbsp;</div>
+				<div class="odd clear">
+					<a href="turnImage.htm">turnImage</a>
+					<span>Demonstrates: JS, passion</span>
+					<p>
+						A simple perspective image rotation in JS<br />
+						After seeing the "http://wallst.com/people.asp" page, I was inspired to find another of my "You can't do that in javascript" challenges (several examples on this page were originally from such challenges).<br />
+						While this was built mostly as a personal challenge (and not specifically for this package), I very much wanted to have it functional when I sent my code to you.  Sadly I was unable to finish in that time frame.  Here is the code as it stands, my new goal is to have it working by the time my interview on Thursday. <br />
+					</p>
+					<a href="http://www.introprod.com/wsod/turnImage.htm" >Check up on my progress here: www.introprod.com/wsod/turnImage.htm</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

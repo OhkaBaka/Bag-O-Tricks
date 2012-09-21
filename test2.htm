@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Image Turn</title>
+
+		<style>
+			.f_container {
+				display: block;
+				position: absolute;
+			}
+			.f_segment {
+				display: block;
+				position: absolute;
+				overflow: hidden;
+				top: 0px;
+			}
+			.f_segment img {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			#turnButtons{
+				font: normal 8pt Verdana, Arial, Helvetica, sans-serif;
+				position:absolute;
+				display: block;
+				left: 20px;
+				top: 20px;
+				width: 100px;
+				border: 1px solid black;
+				background-color:#BBDDBB;
+				color:#003300;
+				padding: 0px;
+				text-aling: center;
+			}
+			#turnButtons input {
+				font: normal 8pt Verdana, Arial, Helvetica, sans-serif;
+				display: block;
+				margin: 3px auto;
+				width: 90px;
+			}
+			#textBlurb{
+				font: normal 8pt Verdana, Arial, Helvetica, sans-serif;
+				position:absolute;
+				display: block;
+				right: 20px;
+				bottom: 20px;
+				width: 300px;
+				border: 1px solid black;
+				background-color:#BBDDBB;
+				color:#003300;
+				padding: 0px;
+			}
+			#textBlurb p {
+				margin: 10px;
+			}
+			#textBlurb h5 {
+				font: bold 6pt Verdana, Arial, Helvetica, sans-serif;
+				margin: 5px 10px 0px 10px; text-align:left;
+			}
+			#textBlurb h6 {
+				font: normal 6pt Verdana, Arial, Helvetica, sans-serif;
+				margin: 2px 10px 5px 20px; text-align:left;
+			}
+			
+		</style>
+		<!--- LAZY! For 2 friggin commands... sigh... script type="text/javascript" src="prototype.js" ></script --->
+		<script language="javascript">
+			dog1 = function(inName){
+				this.name = inName;
+				this.callTo = function(){
+					alert( "Come Here " + this.name + "!" );
+				}
+			}
+
+			dog2 = function(inName) {
+				dog1.call( this, inName );
+			} 
+
+			dog2.prototype.speak = function(){
+				alert( "Woof" );
+			};
+
+			function doLoaded(){
+				d1 = new dog1( "Fido" );
+				d2 = new dog2( "Rex" );
+			}
+
+			document.addEventListener('load', doLoaded, true);
+		</script>
+
+	</head>
+	
+	<body>
+		<div id="textBlurb" >
+		</div>
+	</body>
+</html>

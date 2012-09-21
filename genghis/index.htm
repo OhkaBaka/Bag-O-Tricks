@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>GEngHIS - Game Engine Heuristic Interface System - v.5</title>
+	<LINK REL="SHORTCUT ICON" HREF="/samples/genghis/genghis200.ico" />
+	<style>
+		body{ font: normal 10pt Verdana, Arial, Helvetica, sans-serif;color: #000000;background-color:#DDCCCC;padding: 0px;margin: 0px; overflow-x: hidden; }
+		#bodyDiv{
+			display:block;
+			position:relative;
+			padding: 0px;
+			margin: 0px;
+			height:1%;
+		}
+		body > #bodyDiv{ height: auto; }
+
+		#n_left, #n_leftleft, #n_right, #n_rightright, #n_top { display: block; position: absolute; width: 100%; height: 100%; padding: 0px; margin: 0px; left:0px; top: 0px; height:auto; }
+
+		h1 { padding: 5px; margin: 5px, 0px; font-size: 200%; }
+		.boardDiv, .boardDiv div { margin: 0; padding: 0px; border: none; overflow:hidden; }
+		.boardDiv{ position: relative; }
+		.columnDiv{ position: absolute; top:0px; overflow:hidden; }
+		.tileDiv { position: absolute; left:0px; }
+		.dirlink { display: block; height: 100%; width: 100%; color:#CCCCCC; font: bold 12pt Verdana, Arial, Helvetica, sans-serif; text-decoration:none; text-align: center; margin: 0px; padding: 3px;}
+
+		.base{ position: absolute; top:0; left:0; z-index:1; }
+		.terrain { position: absolute; top:0; left:0; z-index:2; }
+		.text{ position: absolute; top:0; left:0; z-index:3; color: white; font: bold 10px "Courier New", Courier, mono; text-align:center; }
+
+		.fullMapDot{
+			position:relative;
+			display:block;
+			float: left;
+			padding: 0px;
+			margin: 0px;
+			border: none;
+			height: 5px;
+			width: 5px;
+		}
+		.fullMapRowClear{
+			position:relative;
+			display:block;
+			float: left;
+			height: 5px;
+			width: 1px;
+			padding: 0px;
+			margin: 0px;
+			clear: right;
+		}
+
+		.headerDiv { background: no-repeat top left url(images/genghis200.png) #FFEFCF; display:block; position: relative; margin: 10px; padding: 5px 5px 5px 210px; width: 785px;}
+		.contentDiv { display:block; position: relative; margin: 10px; padding: 0; width: 1000px;}
+		.introDiv {
+			display:block;
+			position:absolute;
+			color: #553;
+			background-color:#FFEFCF;
+			width: 630px;
+			padding: 5px;
+			margin: 0px;
+			top: 0px;
+			right: 0px;
+			border: 1px solid #999999;
+		}
+		
+		.mapDiv {
+			display:block;
+			position:absolute;
+			color: #553;
+			background-color:#FFEFCF;
+			width: 350px;
+			padding: 5px;
+			margin: 0px;
+			top: 0px;
+			left: 0px;
+			border: 1px solid #999999;
+		}
+		.mapDiv table { background-color:#FFFFFF; }
+		
+		.mainwindow { width: 250px; height: 250px; border: 1px solid #999999;}
+
+		.particleList li {list-style-type:none; }
+
+	</style>
+
+	<script type="text/javascript" src="../prototype.js" ></script>
+	<script type="text/javascript" src="effects.js" ></script>
+	<script type="text/javascript" src="map.js" ></script>
+
+	<script language="javascript" type="text/javascript">
+		// ON LOAD, CREATE A NEW GENGHIS MAP
+		Event.observe( window, 'load', function(){
+			tG.loadView( "mainwindow" ) ;
+			//tG.buildmap( testmap );
+		});
+	</script>
+</head>
+
+<body>
+	<div id="bodyDiv">
+		<div id="headerDiv" class="headerDiv">
+			<h1>GEngHIS</h1>
+			<p>
+				As I see "cool ideas" on the web for various things, I often get inspired to duplicate or improve that idea.  I want to create a game with the feature set of "Shining Force," with all the advantages the web can provide.
+			</p>
+			<p>
+				GEngHIS is an acronym for <b>G</b>ame <b>E</b>ngine <b>H</b>euristics <b>I</b>nquisition <b>S</b>ystem<br />
+				Named for the trial and error exploration that the platform provides for me.  I have an ideas for things I want to do, and GEngHIS gives me an idea of what is viable, and what is impossible (*meaning "more work than ideas that are possible").<br />
+				...either that or I named it for the torturous concept of game development in Javascript in general.
+			</p>
+			<p>
+				The majority of this was built in 2008 using a lote of straight JavaScript, and prototype.<br/>
+				I have since discovered many wonderful things (isn't that the way, though?) and, while I'm continuing on using the tools I started with, I may change gears at some point and integrate something like ExtJS to help with data management.<br/>
+				Having typed that, I realize that Ext's overhead is probably so high that it would sink the ship.  I will probably use what I've learned working with that API to make the genghis engine more robust.<br/>
+			</p>
+			<p>
+				The current version of this code does not have functioning map code*, though the source is here for your examination, I stepped forward considerably in the scope of the project in this cycle and haven't caught back up with myself yet.  The last version where you can interact and see functionality is <a href="index_v02.cfm">here</a>.
+				<br/><em>* The effects systems code is funtional.</em>
+			</p>
+		</div>
+		<div id="contentDiv" class="contentDiv">
+			<div id="mapDiv" class="mapDiv">
+				<table>
+					<tr>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'nw')">NW</a></td>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'n')">N</a></td>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'ne')">NE</a></td>
+					</tr>
+					<tr>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'w')">W</a></td>
+						<td><div id="mainwindow"></div></td>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'e')">E</a></td>
+					</tr>
+					<tr>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'sw')">SW</a></td>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 's')">S</a></td>
+						<td><a href="javascript:void(0);" class="dirlink" onclick="tG.moveView( 0, 'se')">SE</a></td>
+					</tr>
+				</table>
+			</div>
+			<div id="introDiv" class="introDiv">
+				<fieldset title="Visual Effect Gadgets">
+					<label><input id="dizzyCheck" type="checkbox" onclick="blurPage('nausea');" /> Get Dizzy.</label>
+					<label><input id="shockCheck" type="checkbox" onclick="blurPage('shock');" /> Get Shocked.</label>
+					<p>
+						I envisioned the getDizzy effect as an april fools joke, unfortunately I finished it about the second week of april.  It will run on any page, and is shockingly efficient (moving around multiple copies of the body element is not a big deal apparently).<br />
+						"Get Shocked" is an logical extension of that, imagining the JIGGLE that is common in console games to indicate an attention getter.
+					</p>
+					<ul class="particleList" >Particle Effects (cursor effects)
+						<li><label><input id="SquareLighterCheck" type="checkbox" onclick="buildParticles( 'squareLighter' );"/>Light Cursor On Fire</label></li>
+						<li><label><input id="PurpleHazeCheck" type="checkbox" onclick="buildParticles( 'purpleHaze' );"/>Get Experienced</label></li>
+						<li><label><input id="SquareLighterCheck" type="checkbox" onclick="buildParticles( 'smoke' );"/>Smoke on the Monitor, and Fire in the Wire</label></li>
+					</ul>
+					<p>
+						Blizzard's World Of Warcraft website for Korea had at one time a fantastic flaming cursor effect.  I loved it, but when I examine the code I found it was flash.  I knew it could be done in JS, and built my flaming cursor code to prove it.  I'm not completely happy with it yet, but it's getting there.<br />
+						I realized early on that making it configurable for the sake of less powerful machines, was required.  From that initial modularity I expanded, giving it the capability to generate a vast array of different effects.
+						<br /><br />Also... in IE this runs like molasses. No Idea.  I can't imagined IE's javascript div management is THAT AWFUL, I'm assuming its something I'm doing until I know better.  Mozilla browsers run at least 10 times faster.
+					</p>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

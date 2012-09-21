@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Guild Wars 2 Screenshot Feed</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+		
+		<script>
+			feedArray=[];
+			
+			function wcl(x){
+				window.console.log(x);
+			}
+	
+			function viewFeedItem( fix ){
+				$( ".feedlistitem" ).toggleClass( "current" );
+				$( "#wrapper" ).css( "background", 'url("images/' + feedArray[fix].image + '") no-repeat center' );
+				$( feedArray[fix].fiid ).toggleClass( "current" );
+				return false
+			}
+	
+			function updateDisplay(){
+				if( typeof( arguments ) != "undefined" ) displayCount=arguments[0];
+				else displayCount = 1;
+	
+				noShowCount=0;
+				$.each( feedArray, function( fix, fitem ){
+					if( fitem.show == 0 ) noShowCount++;
+				});
+	
+				if( displayCount >= noShowCount ) displayCount = noShowCount;
+	
+				$.each( feedArray, function( fix, fitem){
+					if( displayCount >= 1 && fitem.show == 0 ) {
+						fitem.ob.show();
+						fitem.show=1;
+						displayCount--;
+					}
+				});
+	
+				updateAlert();
+				return false;
+			}
+	
+			function addToFeedArray( feedItem ){
+				feedItem.fiid = 'fli_' + feedArray.length;
+				feedItem.show = 0;
+	
+				itemDiv = '<a href="#" class="feedlistitem ' + feedItem.type + '" id="' + feedItem.fiid +'" onclick="viewFeedItem(\'' + feedArray.length + '\')" style="background: #f2c696 url(\'images/thumbs/' + feedItem.image + '\') no-repeat left top;" >';
+				//itemDiv += '<img src="images/thumbs/' + feedItem.image + '" />';
+				itemDiv += '<span class="timestamp">' + feedItem.timestamp + '<br /></span>';
+				itemDiv += '<span class="location">' + feedItem.location + '<br /></span>';
+				itemDiv += '<span class="subject">' + feedItem.subject + '<br /></span>';
+				itemDiv += '</a>';
+	
+				$( itemDiv ).insertAfter('#feedlistalert').hide();
+				feedItem.ob = $( '#'+feedItem.fiid );
+				feedArray.push( feedItem );
+			}
+	
+			function updateAlert(){
+				noShowCount=0;
+				$.each( feedArray, function(fix,fitem){
+					if( fitem.show == 0 ) {
+						noShowCount++;
+					}
+				});
+				if( noShowCount == 1 ){
+					$("#feedlistalert span.label").html( "There is 1 new image." );
+					$(document).attr('title', 'Guild Wars 2 Screenshot Feed (1 New)');
+					$("#feedlistalert a.getOne").html( "Get It!" );
+					$("#feedlistalert a.getFive").hide();
+					$("#feedlistalert a.getAll").hide();
+					$("#feedlistalert").show();
+				} else if( noShowCount > 1 ){
+					$("#feedlistalert span.label").html( "There are " + noShowCount + " new images." );
+					$(document).attr('title', 'Guild Wars 2 Screenshot Feed (' + noShowCount + ' New)');
+					$("#feedlistalert a.getOne").html( "Get Next" );
+					if( noShowCount > 5 ) $("#feedlistalert a.getFive").show();
+					else $("#feedlistalert a.getFive").hide();
+					$("#feedlistalert a.getAll").show();
+					$("#feedlistalert").show();
+				} else $("#feedlistalert").hide();
+			}
+	
+			function checkForNew(){
+				if( typeof( arguments ) != "undefined" && arguments[0]==1 ) init="?init=1";
+				else init = "";
+				$.getJSON('feed.php'+init, function(data) {
+					countBefore=feedArray.length;
+					if( data instanceof Array ){
+						$.each( data, function( index, value ){ addToFeedArray( value ) } );
+					}
+					if( countBefore == 0 ) updateDisplay(99);
+					else if( countBefore != feedArray.length ) updateAlert();
+				});
+				nextCheck = setTimeout( checkForNew, 10000 );
+			}
+	
+			$( checkForNew(1) );		
+			
+		</script>
+		
+		<style>
+			#wrapper {
+				padding: 0px;
+				margin: 0px;
+				font-family: Verdana, Geneva, sans-serif;
+				font-size: 12pt;
+				color: #888888;
+				text-align: center;
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top:0px;
+				left:0px;
+				overflow:hidden;
+			}
+
+			.feedlistframe {
+				border: 1px solid #9b3f0c;
+				background-color: transparent;
+				top: 10px;
+				left: 10px;
+				bottom:10px;
+				display: block;
+				position:absolute;
+				overflow-y:auto;
+				overflow-x:hidden;
+				font-size: 10pt;
+				width: 320px;
+				z-index:10;			
+			}
+
+			.feedlistframeBG {
+				border: 1px solid #9b3f0c;
+				background-color: #cd9f86;
+				top: 10px;
+				left: 10px;
+				bottom:10px;
+				display: block;
+				position:absolute;
+				overflow:hidden;
+				filter:alpha(opacity=50);
+				opacity:.50;
+				width: 320px;
+				z-index:1;			
+			}
+
+			.feedlistitem {
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				background-image: -moz-linear-gradient(top, #c7c0ba 50%, #8f8174);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #c7c0ba), color-stop(1.0, #8f8174));
+				border: 1px solid #39332e;
+				background-color: #f2c696;
+				color: #35302c;
+				width: 280px;
+				height: 64px;
+				padding: 0px;
+				margin: 10px;
+				display: block;
+				position: relative;
+				text-decoration: none;
+				text-align: center;
+				z-index: 10;
+			}
+
+			.feedlistitem:hover {
+				background-image: -moz-linear-gradient(top, #fadbcb 50%, #8f8174);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #fadbcb), color-stop(1.0, #8f8174));
+			}
+
+			.feedlistitem.current {
+				background-color: #fadbcb;
+				background-image: -moz-linear-gradient(top, #fadbcb 50%, #8f8174);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #fadbcb), color-stop(1.0, #8f8174));
+			}
+
+			.feedlistitem .timestamp, .feedlistitem .location, .feedlistitem .subject { font-size: 10px; padding-left: 115px; text-align: center; }
+
+			.feedlistitem.caption .timestamp { font-size: 8px; color: #45402f; }
+			.feedlistitem.caption .location { font-size: 12px;font-weight:bold; }
+			.feedlistitem.caption .subject { font-size: 1px; }
+
+			.feedlistitem.character .timestamp { font-size: 8px; color: #45402f; }
+			.feedlistitem.character .location { font-size: 10px; }
+			.feedlistitem.character .subject { font-size: 12px; font-weight:bold; }
+
+			.feedlistitem.snapshot .timestamp { font-size: 8px; color: #45402f; }
+			.feedlistitem.snapshot .location { font-size: 10px; font-weight: bold; }
+			.feedlistitem.snapshot .subject { font-size: 8px; }
+
+			.feedlistitem.vista .timestamp { font-size: 8px; color: #45402f; }
+			.feedlistitem.vista .location { font-size: 12px; font-weight: bold; }
+			.feedlistitem.vista .subject { font-size: 1px; color: #f2c696; }
+
+			#feedlistalert {
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				background-image: -moz-linear-gradient(top, #f2c696 50%, #e58d2c);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #f2c696), color-stop(1.0, #e58d2c));
+				background-color: #f2c696;
+				border: 1px solid #5b3811;
+				padding: 0px;
+				color: #9b3f0c;
+				text-align: center;
+				width:280px;
+				display: none;
+				position:static;
+				margin: 10px;
+				height:64px;
+				z-index: 10;
+			}
+
+			#feedlistalert .label {
+				font-size: 12pt;
+				font-weight:bold;
+				padding: 10px auto;
+				margin: 10px auto;
+			}
+
+			.getOne, .getFive, .getAll {
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+				background-image: -moz-linear-gradient(top, #fae6c6 50%, #e58d2c);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #fae6c6), color-stop(1.0, #e58d2c));
+				background-color: #fae6c6;
+				border: 1px solid #5b3811;
+				margin: 5px 6px;
+				padding: 5px 4px;
+				text-decoration:none; 
+			}
+
+			.getOne:hover, .getFive:hover, .getAll:hover {
+				text-decoration:none;
+				background-color: #f2c696;
+				background-image: -moz-linear-gradient(top, #fdfbeb 50%, #e58d2c);
+				background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #fdfbeb), color-stop(1.0, #e58d2c));
+				background-color: #fdfbeb;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="feedlistframe">
+				<div id="feedlistalert">
+					<span class="label">There are 0 new images!</span><br/><br/>
+					<span>
+						<a class="getOne" href="#" onclick="updateDisplay(1)" ></a>
+						<a class="getFive" href="#" onclick="updateDisplay(5)" >Get Next 5</a>
+						<a class="getAll" href="#" onclick="updateDisplay(99)">Get All</a>
+					</span>
+				</div>
+			</div>
+            <div class="feedlistframeBG"></div>
+		</div>
+	</body>
+</html>
