@@ -34,6 +34,6 @@ GEngHIS needs love.  It is the culmination of various ideas and projects that al
 
 usgs2kml
 --------
-For about 6 months, a few years back, was Google Maps integration.  One of my favorite tools that could outline geographical bodies on a google map.
+My primary development focus for about 6 months, a few years back, was Google Maps integration.  One of my favorite tools that could outline geographical bodies on a google map.
 Built in ColdFusion, and using USGS data.
 The reason it sticks around is as a reminder not to try to build things if there is a chance Google is already doing it.  They will finish before you, do a better job, and make you look like an amateur.
