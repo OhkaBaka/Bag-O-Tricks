@@ -6,7 +6,7 @@ This is a collection of my various little bits.
 Screen Shot Feed
 ----------------
 As a challenge I was asked to create a UI control that could display images from a feed and alert the user as new images came in.
-[Link](http://trulove.cc/Bag-O-Tricks/screenshotfeed/)
+[Link](http://trulove.cc/Bag-O-Tricks/screenshotfeed/) 
 
 Towers of Hanoi
 ---------------
@@ -17,12 +17,12 @@ eatImage
 --------
 The idea was not a wise one, but it was an interesting one.
 "How hard would it be to feed an image to PHP, disect it into colors and coordinates, and then reconstruct it using DOM elements."
-[Link](http://trulove.cc/Bag-O-Tricks/eatImage/eatImageHtml.php)
+[Link](http://trulove.cc/Bag-O-Tricks/eatImage/eatImageHtml.php) Broken ATM
 
 turnImage
 ---------
 JavaScript can't natively do certain things. Image rotation is one of those things. TurnImage is a javascript solution to flipping an image on it's Y axis.
-[Link](http://trulove.cc/Bag-O-Tricks/turnImage/turnImage.php)
+[Link](http://trulove.cc/Bag-O-Tricks/turnImage/turnImage.php) Broken ATM
 
 phpadv
 ------
