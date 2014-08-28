@@ -1,0 +1,15 @@
+name = Contextual Contains Filter
+description = Provides option to contextually filter Views by search terms INCLUDED in a field, instead of EQUAL TO.
+package = Views
+dependencies[] = views
+files[] = views/contextual_contains_filter.views.inc
+files[] = views/contextual_contains_filter_handler_argument_string.inc
+files[] = views/contextual_contains_filter_plugin_argument_validate_string.inc
+files[] = contextual_contains_filter.admin.inc
+files[] = contextual_contains_filter.install
+files[] = contextual_contains_filter.module
+configure = admin/config/content/contextual_contains_filter
+core = 7.x
+version = 7.x-1.dev
+
+

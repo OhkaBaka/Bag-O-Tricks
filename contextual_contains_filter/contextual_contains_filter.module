@@ -1,0 +1,69 @@
+<?php
+/**
+ * @file
+ * contextual_contains_filter.module
+ *
+ * Adds to Views an option to contextually filter by contained string.
+ * For instance, if you have a View with a string field (eg Author or Title)
+ * and have added this field as the first contextual filter, then you can filter
+ * your View page like so:
+ *
+ *   http://yoursite.com/yourview/john
+ *
+ * Which will return authors "Stephen", as well as "Stephen King" and
+ * "Neil Stephenson"
+ * The OR ('+') operator is supported.
+ * The negate operator ("Exclude" tick box) is supported.
+ * "Glossary mode" (match on first N characters of a string) is supported.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function contextual_contains_filter_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#contextual_contains_filter':
+      $t = t('Configuration and usage instructions are in this <a href="@README">README</a> file.<br/>Known issues and solutions may be found on the <a href="@contextual_contains_filter">Contextual Contains Filter</a> project page.', array(
+        '@README' => url(drupal_get_path('module', 'contextual_contains_filter') . '/README.txt'),
+        '@contextual_contains_filter' => url('http://drupal.org/project/contextual_contains_filter')));
+      break;
+  }
+  return empty($t) ? '' : '<p>' . $t . '</p>';
+}
+
+/**
+ * Implements hook_menu().
+ */
+function contextual_contains_filter_menu() {
+  $items['admin/config/content/contextual_contains_filter'] = array(
+    'title' => 'Contextual Filter Contains',
+    'description' => 'Select which contextual filters need to be converted to a simple LIKE match (instead of an IS).',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('contextual_contains_filter_admin_config'),
+    'access arguments' => array('administer contextual contains filters'),
+    'file' => 'contextual_contains_filter.admin.inc'
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function contextual_contains_filter_permission() {
+  return array(
+    'administer contextual contains filters' => array(
+      'title' => t('Administer contextual contains filters'),
+      'description' => t('Allow access the Contextual Contains Filter configuration page.'),
+    )
+  );
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function contextual_contains_filter_views_api() {
+  return array(
+    'api'  => views_api_version(),
+    'path' => drupal_get_path('module', 'contextual_contains_filter') . '/views',
+  );
+}
