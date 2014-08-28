@@ -3,6 +3,10 @@ Bag-O-Tricks
 
 This is a collection of my various little bits.
 
+Contextual Contains Filter
+--------------------------
+Provides option to contextually filter Views by search terms INCLUDED in a field, instead of EQUAL TO. This started life as [RdeBoer's](https://drupal.org/user/404007) work [Views Contextual Range Filter](https://drupal.org/project/contextual_range_filter)
+
 Screen Shot Feed
 ----------------
 As a challenge I was asked to create a UI control that could display images from a feed and alert the user as new images came in. [See it In Action](http://trulove.cc/Bag-O-Tricks/screenshotfeed/)
