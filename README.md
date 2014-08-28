@@ -18,7 +18,7 @@ In an interview I was asked to procedurally solve a Towers of Hanoi challenge, t
 eatImage
 --------
 The idea was not a wise one, but it was an interesting one.
-"How hard would it be to feed an image to PHP, disect it into colors and coordinates, and then reconstruct it using DOM elements."
+"How hard would it be to feed an image to PHP, disect it into colors and coordinates, and then reconstruct it using DOM elements." [See it In Action](http://trulove.cc/Bag-O-Tricks/eatImage/eatImageHtml.php)
 
 turnImage
 ---------
