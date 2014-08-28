@@ -8,7 +8,7 @@
 	$imgStripMaxWidth = 150;
 
 	function rgbhex( $colorIn ){
-		return '#' . str_pad( dechex( $colorIn[red] ), 2, 0, 'STR_PAD_LEFT' ) . str_pad( dechex( $colorIn[green] ), 2, 0, 'STR_PAD_LEFT' ) . str_pad( dechex( $colorIn[blue] ), 2, 0, 'STR_PAD_LEFT' );
+		return '#' . str_pad( dechex( $colorIn[red] ), 2, 0, STR_PAD_LEFT ) . str_pad( dechex( $colorIn[green] ), 2, 0, STR_PAD_LEFT ) . str_pad( dechex( $colorIn[blue] ), 2, 0, STR_PAD_LEFT );
 	}
 	function normdist($X, $mean, $sdev) {
 		// Syntax: normdist( x, mean, standard_dev )
