@@ -18,7 +18,11 @@ In an interview I was asked to procedurally solve a Towers of Hanoi challenge, t
 eatImage
 --------
 The idea was not a wise one, but it was an interesting one.
-"How hard would it be to feed an image to PHP, disect it into colors and coordinates, and then reconstruct it using DOM elements." [See it In Action](http://trulove.cc/Bag-O-Tricks/eatImage/eatImageHtml.php)
+"How hard would it be to feed an image to PHP, disect it into colors and coordinates, and then reconstruct it using DOM elements."
+
+[See it In Action](http://trulove.cc/Bag-O-Tricks/eatImage/eatImageHtml.php)
+
+My notes are particularly amusing to me now as the project has gone untouched for years, and modern browsers (even IE) can now chew up and spit out 10k divs without breaking a sweat.
 
 turnImage
 ---------
@@ -34,6 +38,7 @@ GEngHIS needs love.  It is the culmination of various ideas and projects that al
 
 usgs2kml
 --------
-For about 6 months, a few years back, was Google Maps integration.  One of my favorite tools that could outline geographical bodies on a google map.
+My life for about 6 months, a decade back, was Google Maps integration.  One of my favorite tools was a script that could outline geographical bodies on a google map.
 Built in ColdFusion, and using USGS data.
 The reason it sticks around is as a reminder not to try to build things if there is a chance Google is already doing it.  They will finish before you, do a better job, and make you look like an amateur.
+I stopped working on Google maps when it became abundantly clear that every good idea I had was already being added to the API.
