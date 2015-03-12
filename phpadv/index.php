@@ -1,5 +1,6 @@
 <?php
-	header("Content-type: text/plain");
+	//header("Content-type: text/plain");
+
 	// PHP Adventure
 	// An experiment in PHP OOP, potentially to feed GEngHIS, but more imediately, to make a nifty text adventure.
 	
@@ -14,10 +15,11 @@
 	}
 	
 	class aObject{
-	   function __construct( $desc="a thing of some kind", $name="object" ) {
-		   $this->description = $desc;
-		   $this->name = $name;
-	   }
+		function __construct( $desc="a thing of some kind", $name="object" ) {
+			$this->description = $desc;
+			$this->name = $name;
+			$this->mname = $mname;
+		}
 		function lookAt(){
 			echo "It is " . $this->description . "\n";
 		}
@@ -97,27 +99,36 @@
 		}
 	}
 	
-	$location0 = new aLocation( "The Null Void", "a place that can not be described, even as it can be named.", array( 0, 0, 0, 0, 0, 0 ) );
-	$window1 = new aWindow( "small window", "a small window opening into the next cell", $location0 );
-	$passage1 = new aPassage( "stone passageway", "a stone passageway that leads into the next cell", $location0, true, true );
-	$location1 = new aLocation( "The Begining", "the place that is the begining.", array( $passage1, $window1, 0, 0, 0, 0 ) );
+	// define each location objects first, then containers
+	$location[0] = new aLocation( "The Null Void", "a place that can not be described, even as it can be named.", array( 0, 0, 0, 0, 0, 0 ) );
+	
+	$window[] = new aWindow( "small window", "a small window opening into the next cell", $location[2] );
+	$passage[] = new aPassage( "stone passageway", "a stone passageway that leads into the next cell", $location[2], true, true );
+	$location[1] = new aLocation( "The Begining", "the place that is the begining.", array( $passage[0], $window[0], 0, 0, 0, 0 ) );
+	
+	$window[] = new aWindow( "small window", "a small window opening into the next cell", $location[0] );
+	$window[] = new aWindow( "small window", "a small window opening into the next cell", $location[1] );
+	$passage[] = new aPassage( "stone passageway", "a stone passageway that leads into the next cell", $location[0], true, true );
+	$passage[] = new aPassage( "stone passageway", "a stone passageway that leads into the next cell", $location[1], true, true );
+	$location[2] = new aLocation( "A Room", "an ordinary room.", array( $passage[1], $window[1], $passage[2], $window[2], 0, 0 ) );
 
-	echo "\n*> LOOK\n";
-	$location1->lookAt();
-	echo "\n*> GO SOUTH\n";
-	$location1->go("S");
-	echo "\n*> GO EAST\n";
-	$location1->go("E");
-	echo "\n*> LOOK WINDOW\n";
-	$window1->lookAt();
-	echo "\n*> LOOK THROUGH WINDOW\n";
-	$window1->lookThrough();
-	echo "\n*> LOOK DOOR\n";
-	$passage1->lookAt();
-	echo "\n*> LOOK THROUGH DOOR\n";
-	$passage1->lookThrough();
-	echo "\n*> GO NORTH\n";
-	$location1->go("N");
-	echo "\n*> LOOK\n";
-	$location0->lookAt();
+
+	echo "<br/><li> LOOK</li>";
+	$location[1]->lookAt();
+	echo "<br/><li> GO SOUTH</li>";
+	$location[1]->go("S");
+	echo "<br/><li>GO EAST</li>";
+	$location[1]->go("E");
+	echo "<br/><li> LOOK WINDOW</li>";
+	$window[0]->lookAt();
+	echo "<br/><li> LOOK THROUGH WINDOW</li>";
+	$window[0]->lookThrough();
+	echo "<br/><li> LOOK DOOR</li>";
+	$passage[0]->lookAt();
+	echo "<br/><li> LOOK THROUGH DOOR</li>";
+	$passage[0]->lookThrough();
+	echo "<br/><li> GO NORTH</li>";
+	$location[0]->go("N");
+	echo "<br/><li> LOOK\n";
+	$location[0]->lookAt();
 ?>

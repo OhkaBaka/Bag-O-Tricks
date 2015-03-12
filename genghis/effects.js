@@ -4,6 +4,11 @@ var nowDate = new Date();
 var bodyHTML;
 var isBlurred = false;
 var blurFrames = false;
+
+$=function(id){
+	document.getElementById( id );
+}
+
 function blurPage( blurType ){
 	if( !blurFrames ){
 		bodyHTML = document.getElementById( 'bodyDiv' ).innerHTML;
@@ -39,10 +44,11 @@ function blurPage( blurType ){
 			$('shockCheck').disabled = true;
 		} else if ( blurType == 'nausea' ) {
 			blurDivs = [ 'n_left','n_right','n_leftleft','n_rightright' ];
-			for( ix=0; ix < 4; ix++) {
+			for( ix=1; ix < 4; ix++) {
 				document.getElementById( blurDivs[ix] ).style.zIndex = 100;
 				document.getElementById( blurDivs[ix] ).style.filter = 'alpha(opacity=30)';
 				document.getElementById( blurDivs[ix] ).style.opacity = .3;
+				document.getElementById( blurDivs[ix] ).style.transition = '2s';
 			}
 			isBlurred = true;
 			nauseaPage();
@@ -67,12 +73,15 @@ function shockPage(){
 
 function nauseaPage(){
 	blurDivs = [ 'n_left', 'n_right', 'n_leftleft', 'n_rightright' ];
-	for( ix=0; ix < 4; ix++) {
-		if( parseInt( document.getElementById( blurDivs[ix] ).style.left ) >= 5 ) document.getElementById( blurDivs[ix] ).style.left = '3px';
-		if( parseInt( document.getElementById( blurDivs[ix] ).style.left ) <= -5 ) document.getElementById( blurDivs[ix] ).style.left = '-3px';
-		document.getElementById( blurDivs[ix] ).style.left = ( parseInt( document.getElementById( blurDivs[ix] ).style.left ) + ( Math.floor( Math.random() * 3 ) - 1 ) ) +'px';
+	for( ix=2; ix < 4; ix++) {
+		//if( parseInt( document.getElementById( blurDivs[ix] ).style.left ) >= 4 ) document.getElementById( blurDivs[ix] ).style.left = '3px';
+		//if( parseInt( document.getElementById( blurDivs[ix] ).style.left ) <= -4 ) document.getElementById( blurDivs[ix] ).style.left = '-3px';
+		document.getElementById( blurDivs[ix] ).style.left =  ( Math.floor( Math.random() * 5 ) - 2 ) +'px';
+		opac = Math.floor( Math.random() * 30 ) + 10;
+		document.getElementById( blurDivs[ix] ).style.filter = 'alpha(opacity=' + opac + ')';
+		document.getElementById( blurDivs[ix] ).style.opacity = opac/100;
 	}
-	nTimer = setTimeout( "nauseaPage()", Math.ceil(Math.random()*100)+100 );
+	nTimer = setTimeout( "nauseaPage()", Math.ceil(Math.random()*2000)+1000 );
 }
 
 
