@@ -8,12 +8,12 @@ Sample Input: Zu6
 Sample Output: 6Zu, 6uZ, Z6u, Zu6, u6Z, uZ6
  
 Scoring:
-IF / ELSE / ELSEIF = 2 points
-WHILE = 2 points + 2 points per iteration
-DO-WHILE = 2 points per iteration
-FOR = 2 points + 4 points per iteration
-FOREACH = 2 points + 1 point per iteration
-SWITCH = 4 points
+IF / ELSE / ELSEIF = 2 points 
+WHILE = 2 points + 2 points per iteration 
+DO-WHILE = 2 points per iteration 
+FOR = 2 points + 4 points per iteration 
+FOREACH = 2 points + 1 point per iteration 
+SWITCH = 4 points 
 
 perm1.php
 ---------
