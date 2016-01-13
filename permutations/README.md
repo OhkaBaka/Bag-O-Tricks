@@ -7,7 +7,7 @@ Write a PHP program which prints all the permutations of a string in alphabetica
 Sample Input: Zu6  
 Sample Output: 6Zu, 6uZ, Z6u, Zu6, u6Z, uZ6  
  
-Scoring:
+Scoring:  
 IF / ELSE / ELSEIF = 2 points  
 WHILE = 2 points + 2 points per iteration  
 DO-WHILE = 2 points per iteration  
