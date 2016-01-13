@@ -20,7 +20,7 @@ perm1.php
 	perm()
 	4kb
 	20 lines of code
-Fairly ordinary code, elegant and simple.  It does the job.  Once I figured out how to do what I was doing, I ended up writing almost verbatim the code examples I found on the stack that are seeking the same goal.  I was unable to reduced the points on a 3 letter word to less than 20, and while the code is certainly acceptable for a real world situation, this was a challenge!
+Fairly ordinary code, elegant and simple.  It does the job.  Once I figured out how to do what I was doing, I ended up writing almost verbatim the same code that I found in examples on StackOverflow that were seeking the same goal.  I was unable to reduced the points below (l!)*l+2 (with l being the length of the word), and while the code is certainly acceptable for a real world situation, this was a challenge for points, and that score was WAY TO HIGH!
 
 perm2.php
 ---------
