@@ -1,4 +1,4 @@
-Bag-O-Tricks
-============
+PHP Adventure!
+==============
 
-This is a collection of my various little bits.
+I was thinking about an old school text adventure as a textbook use of OOP, this is the result of that.

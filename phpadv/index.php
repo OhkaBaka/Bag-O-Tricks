@@ -1,8 +1,6 @@
 <?php
 	//header("Content-type: text/plain");
-	$gnu_value[] = "ttehctarp"; $gnu_value[] = "yrret";
-
-	header("x-clacks-overhead: GNU " . strrev( $gnuval[1] ) . " " . strrev( $gnuval[0] ) );
+	header("x-clacks-overhead: GNU Terry Pratchett" );
 
 	// PHP Adventure
 	// An experiment in PHP OOP, potentially to feed GEngHIS, but more imediately, to make a nifty text adventure.
