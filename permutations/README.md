@@ -27,7 +27,7 @@ perm2.php
 	horror_perm()
 	4 points
 	~150kb
-	~906 lines of code
+	~900 lines of code
 I kept going back to the rules and looking at that SWITCH... 4 points, regardless of the options inside of it.  I devised a horribly offensive function that would generate all the possible permutations of a string and simply apply them as a filter.  I got as far as six characters long before writing in a default case that looped back and executed perm() for words that were longer.  (I was banking on the challenger not using predominantly long strings).  As long as the string is 1-6 characters, it executes in 4 points.
 
 perm3.php
