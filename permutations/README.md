@@ -1,4 +1,4 @@
-Permutations Experiments
+Permutation Permutations
 ========================
 
 I was given the following challenge:
