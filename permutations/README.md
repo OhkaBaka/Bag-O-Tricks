@@ -3,9 +3,9 @@ Permutations Experiments
 
 I was given the following challenge:
 
-Write a PHP program which prints all the permutations of a string in alphabetical order. Sorting should be performed in ascending order.
-Sample Input: Zu6
-Sample Output: 6Zu, 6uZ, Z6u, Zu6, u6Z, uZ6
+Write a PHP program which prints all the permutations of a string in alphabetical order. Sorting should be performed in ascending order.  
+Sample Input: Zu6  
+Sample Output: 6Zu, 6uZ, Z6u, Zu6, u6Z, uZ6  
  
 Scoring:
 IF / ELSE / ELSEIF = 2 points  
@@ -36,5 +36,5 @@ perm3.php
 	0 points
 	~42Mb
 	~36000 lines of code
-I was considering ways of using try/catch for error control, and eliminanting "traditional" control structures altogether.  I slept on it, and woke up with the most terrible of solutions in my mind.  I realized my old friend **regex** was the answer.  regex, written correctly, wouldn't care how long a string was, and not error if it was too short. I wrote regex for any word up to 9 characters long.  I also took a gamble and abandoned the catch-all "if it is longer than x" hoping that it would never come up.  PHP regex can handle 99 backreferences, however, the size of the function gets exponentially larger with each extension.
+I was considering ways of using try/catch for error control, and eliminanting "traditional" control structures altogether.  I slept on it, and woke up with the most terrible of solutions in my mind.  I realized my old friend **regex** was the answer.  regex, written correctly, wouldn't care how long a string was, and not error if it was too short. I wrote regex for any word up to 9 characters long.  I also took a gamble and abandoned the catch-all "if it is longer than x" hoping that it would never come up.  PHP regex can handle 99 backreferences, however, the size of the function gets exponentially larger with each extension.  
 This is the most offensive piece of code I have ever written, it also destroyed the next closest competitor {(l^l)+2 points where l is the length of the word}
